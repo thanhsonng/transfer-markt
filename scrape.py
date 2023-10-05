@@ -7,14 +7,14 @@ class TransferMarktSpider(scrapy.Spider):
 
     season = 2018
     matchday = 1
-    start_urls = [f'https://www.transfermarkt.co.uk/premier-league/spieltagtabelle/wettbewerb/GB1?saison_id={season}&spieltag={matchday}']
+    start_urls = [f'https://www.transfermarkt.co.uk/laliga/spieltagtabelle/wettbewerb/ES1?saison_id={season}&spieltag={matchday}']
 
     custom_settings = {
         'USER_AGENT': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36'
     }
 
     def parse(self, response):
-        filename = f'./output/season_{self.season}/season_{self.season}_matchday_{self.matchday}.csv'
+        filename = f'./output/laliga/season_{self.season}/season_{self.season}_matchday_{self.matchday}.csv'
         os.makedirs(os.path.dirname(filename), exist_ok=True)
 
         with open(filename, 'w') as file:
@@ -49,4 +49,4 @@ class TransferMarktSpider(scrapy.Spider):
             self.matchday = 1
         else:
             return None
-        return f'https://www.transfermarkt.co.uk/premier-league/spieltagtabelle/wettbewerb/GB1?saison_id={self.season}&spieltag={self.matchday}'
+        return f'https://www.transfermarkt.co.uk/laliga/spieltagtabelle/wettbewerb/ES1?saison_id={self.season}&spieltag={self.matchday}'
